@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Is the Future of AI – Engineering, Leadership, Reality</title>
+    <meta name="description" content="The future of AI isn’t infinite scale; it’s focused utility: small local models that replace friction and quietly integrate into the stack.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/tags/">Tags</a>
+    </nav>
+    <main>
+      <article>
+        <div class="post-header">
+          <h1>This Is the Future of AI</h1>
+          <div class="post-meta-row">
+            <p class="post-meta">March 1, 2026</p>
+            <p class="post-tags"><a href="/tags/ai/" class="tag">AI</a> <a href="/tags/technology/" class="tag">technology</a> <a href="/tags/economics/" class="tag">economics</a></p>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>This is the future of AI. Not a trillion-dollar hyperscale datacenter. Not a cinematic neural network visualisation. Not a humanoid robot planning your replacement. It is a GPU box sitting in a cupboard, drawing a few hundred watts, training a language model while I watch loss curves inch downward on a second-hand monitor.</p>
+<p><img src="/assets/future-of-ai-hero.jpg" alt="This Is the Future of AI"></p>
+<p>For the last few months I’ve been training my own large language model from scratch. Not fine-tuning a foundation model. Not calling an API. Building the pipeline end-to-end: curating a corpus, filtering garbage, tokenising, sharding datasets, writing training loops, watching VRAM usage like a hawk, listening to fans spin up at 95°C while the model crawls through billions of tokens.</p>
+<p>People usually ask why.</p>
+<p>I’m not building one because I think I’m going to compete with frontier labs. I’m building one because I don’t like having opinions about technology I haven’t wrestled with directly. If something is going to reshape industries, I want to understand its limits, not just its demos. Training a model forces you to confront those limits in a way that using an API never will. It also strips away mystique. When you see the gradients, the instability, the way performance depends obsessively on data quality, you stop thinking in headlines and start thinking in constraints.</p>
+<p>The process is not glamorous. First you discover how much of the internet is unusable: navigation bars, repeated symbols, SEO sludge, AI-generated garbage trained on AI-generated garbage. You filter aggressively because small models cannot afford wasted tokens; every byte matters. Then you tokenise and realise that language is not neat. You see how quickly sequence length explodes, you confront memory ceilings, you reduce batch sizes, you trade speed for stability. You watch loss drop from 5.3 to 4.9 and feel absurdly pleased about what is, in reality, incremental compression of statistical error. You tune learning rates by tiny fractions because the model will diverge if you push too hard. You monitor thermals. You watch power draw plateau at 330 watts. You think about electricity costs.</p>
+<p>Nothing about it feels like an unstoppable autonomous entity. It feels like coaxing a probabilistic system into behaving coherently under strict physical limits. Yes, the outputs can be impressive. Yes, the model can draft text, summarise arguments, generate code scaffolds. But behind that output is a stack of very normal engineering trade-offs: data quality, compute budget, architecture constraints, optimisation curves. Mystique evaporates quickly when you build the thing yourself.</p>
+<p>There’s another reason I’m building one. Most open-weight models are optimised to win benchmarks. They’re trained to answer trivia, recall obscure facts, and outperform each other on standardised evaluations. That makes sense if your goal is leaderboard dominance. It makes less sense if your goal is conversation.</p>
+<p>I don’t need a 70-billion-parameter model memorising Wikipedia. We already have extremely efficient systems for storing and retrieving facts. Databases work. Search engines work. Structured data works. What interests me is the interface layer.</p>
+<p>A language model is not a database. It is a probabilistic conversational engine. When you stop trying to make it a universal knowledge repository and instead treat it as a high-bandwidth interface to existing systems, the design constraints change dramatically. Instead of asking, “How do I make this model as generally intelligent as possible?” the question becomes, “How small can I make this while keeping it coherent, emotionally aware, and useful in dialogue?”</p>
+<p>I’m training a 1.5B parameter model not because it competes with frontier systems, but because it forces discipline. At that scale, you cannot waste tokens. You cannot tolerate noisy corpora. You cannot hide behind brute-force compute. The model has to be shaped deliberately.</p>
+<p>What I care about is conversational quality: high EQ responses, stable tone, the ability to follow a thread of reasoning without collapsing into generic filler. Those qualities are not purely a function of parameter count. They’re a function of training data curation and objective alignment. If I can squeeze a competent, emotionally aware assistant out of a tiny model running on commodity hardware, that tells me something important about where this technology is headed.</p>
+<p>It tells me the future is not infinite scale. It’s focused utility.</p>
+<h2>Centralisation distorts perception</h2>
+<p>Early computing was centralised. Universities owned the machines. Corporations rented time. Access was scarce and expensive. The machines felt mythical.</p>
+<p>Then hobbyists started building kits in garages. That tinkering culture eventually became personal computing. The idea of “a computer in every house” sounded absurd until it wasn’t.</p>
+<p>Right now, frontier AI models are centralised inside hyperscale GPU clusters owned by a handful of companies. That centralisation amplifies fear. It feels like power concentrated beyond reach. At the same time, open weights proliferate. Hardware efficiency improves. Local inference becomes viable. Fine-tuning becomes accessible to small teams.</p>
+<p>The same decentralisation arc is already underway. Mainframes did not remain the centre of computing forever.</p>
+<h2>Anxiety at both ends of the spectrum</h2>
+<p>What’s most interesting about the current AI panic isn’t the volume. It’s the symmetry.</p>
+<p>A friend of mine, mid-career, competent, employed in what would normally be considered a stable role, told me recently that he thinks it’s going to become “pointless being an employee.” Not inefficient. Not competitive. Pointless. His logic was simple: if AI can draft, analyse, summarise, and code, then traditional employment becomes a dead end. His conclusion was immediate; he needs to start a business before the floor disappears. The anxiety wasn’t ambition. It was defensive.</p>
+<p>A few weeks later, I had the opposite conversation. A high net worth individual, with a significant stake in a SaaS company, asked me what AI was going to do to it. He wasn’t asking how to integrate it. He wasn’t curious about leverage. He was worried about erosion. Would AI compress margins? Would it invalidate the product category? Would it make the business obsolete?</p>
+<p>Two different positions in the economy. One fears being replaced. One fears being disrupted. Both assume the same thing: that AI is a force so overwhelming it dissolves existing structures rather than integrating into them.</p>
+<p>That symmetry is revealing. When anxiety shows up simultaneously among employees and capital holders, it usually means the narrative is outrunning the mechanics. Neither of them were asking about training instability, data curation, compute constraints, or integration cost. They were reacting to headlines, demos, and valuation spikes.</p>
+<p>The fear lives in abstraction. The reality lives in implementation.</p>
+<h2>The .com parallel isn’t lazy; it’s structural</h2>
+<p>During the late 90s, the internet triggered a similar wave of fear and exuberance. People believed retail would disappear. Banks would vanish. Media would collapse. Entire employment categories would evaporate.</p>
+<p>Capital flooded in. Valuations detached from revenue. Every company added “.com” to its name because not doing so looked negligent. Then the bubble burst.</p>
+<p>Most of the speculative layer was wiped out. But the underlying technology didn’t disappear. It normalised. The internet became infrastructure. Retail didn’t die. It integrated logistics software, online storefronts, and global distribution. Banks didn’t vanish. They digitised. Media didn’t disappear. It fragmented and restructured. The revolution happened. The apocalypse didn’t.</p>
+<p>AI today feels eerily similar. The breakthroughs are real. The productivity gains are real. The capital inflows are enormous. Expectations, however, are running far ahead of practical absorption. History suggests what comes next is correction, not collapse.</p>
+<h2>AI replaces friction, not civilisation</h2>
+<p>The most important reframing is this: AI is replacing friction, not work itself.</p>
+<p>The internet reduced distribution friction, communication friction, and search friction. It did not eliminate the need for commerce, creativity, or employment.</p>
+<p>Large language models reduce drafting friction. They reduce summarisation friction. They reduce boilerplate coding friction. They accelerate pattern recognition in text-heavy domains. That will compress certain roles. It will reshape others. It will increase productivity in specific categories.</p>
+<p>But the leap from “some tasks are automated” to “most of the workforce becomes irrelevant” is not supported by historical precedent. Every productivity leap looks existential while it’s happening. Then it becomes normal.</p>
+<h2>Why I’m not panicking</h2>
+<p>After months of watching loss curves flatten, wrestling with noisy corpora, and pushing hardware to thermal limits, I don’t see an omnipotent intelligence. I see a powerful statistical tool constrained by physics, data quality, and economics.</p>
+<p>It will change workflows. It will reshape margins. It will make some SaaS categories thinner and others stronger. It will not render employment pointless.</p>
+<p>The bubble will correct. Hype-driven companies will fall away. Capital will consolidate around durable use cases. And AI will become another layer in the stack: invisible, normal, just another tool.</p>
+<p>The future of AI is not domination. It’s integration.</p>
+
+        </div>
+        <nav class="post-nav">
+          <a href="/">← Back to home</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>
+
