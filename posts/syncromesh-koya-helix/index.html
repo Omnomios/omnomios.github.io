@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syncromesh, Koya, and the Helix Split – Engineering, Leadership, Reality</title>
+    <meta name="description" content="Syncromesh was built to run a distributed game simulation. Koya split off to serve embedded UI. When the two diverged too far to share a codebase, the useful parts were pulled down into Helix.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/tags/">Tags</a>
+    </nav>
+    <main>
+      <article>
+        <div class="post-header">
+          <h1>Syncromesh, Koya, and the Helix Split</h1>
+          <div class="post-meta-row">
+            <p class="post-meta">April 4, 2026</p>
+            <p class="post-tags"><a href="/tags/engineering/" class="tag">engineering</a> <a href="/tags/architecture/" class="tag">architecture</a> <a href="/tags/systems/" class="tag">systems</a></p>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>Deepfield was the starting point. It was a sandbox RTS set in a microscopic world; biomes, resources, hostile entities, and a continuous simulation that needed to feel alive. That requirement drove everything that came after it.</p>
+<p>To make that possible, we built a system called Fractal. It wasn’t conceived as a standalone engine. It was the distributed simulation layer that had to behave like one because the problem demanded it. The goal was to run a single, continuous 2D world across a network and split the work based on need rather than coordinates. Dense, entity-heavy regions would attract more compute; sparse regions would run cheaply. The system could scale to a planetary-sized playfield by allocating work where it mattered.</p>
+<p>That’s a hard problem, and most of the work went into keeping it from collapsing under its own complexity. Thousands of entities, multiple shards, shifting load, and a network in between, all of it needing to stay in sync without tearing itself apart or drifting over time.</p>
+<p>Fractal handled sharding, state distribution, and workload balancing. It was the technology that made Deepfield possible, not a separate product we set out to build.</p>
+<p>Rendering was the weak link. We used Unity to get moving quickly, which worked early on. But it meant running two entity systems: the real simulation in Fractal, and a 1:1 mirror mapped onto Unity GameObjects just to render state and handle input. That duplication bought speed at the start and cost us everywhere else. Sync issues, duplicated logic, and changes that were more expensive than they should have been.</p>
+<p>Syncromesh was created to remove that split. It replaced Unity with a renderer and runtime that treated the simulation as the source of truth. The mirror disappeared, and with it a whole class of sync problems. The renderer became part of the same execution model as the simulation instead of something bolted on the side.</p>
+<p>By the time Syncromesh was operating, the writing was already on the wall. The company collapsed under the weight of burnout before it had a chance to realise what it had built.</p>
+<p>What remained was a runtime that understood distributed simulation as a first-class concern.</p>
+<p>The scripting model followed the same idea. In a long-running world with many machines, synchronising state is not enough. Behaviour needs to move with the system. JavaScript was a practical choice. Functions could be created on the server, compiled, shipped with the sync payload, and executed on the client. The entity wasn’t just data; it carried its logic with it.</p>
+<p>That requires a strict security model. Executing distributed logic across machines is not something you leave loose. The result was a scripting backbone designed to operate in hostile conditions over hundreds of machines working on a single shared state. It needed to be reliable and predictable. That constraint carries through into Koya.</p>
+<p>That combination -distributed simulation, portable scripting, and a renderer that doesn’t fight the system- made Syncromesh useful beyond its original purpose. It also meant the system carried flexibility that not every domain actually wanted.</p>
+<p>The UI layer didn’t evolve out naturally. I pulled Syncromesh apart for parts because one piece of it was actually worth keeping.</p>
+<p>The UI in Syncromesh was pretty capable. After dealing with Unity’s UI system, I ended up building something that behaved a bit like CSS, even if it wasn’t. The mental model was clean: a clear hierarchy, a sane animation model, and predictable rendering. You could describe layout declaratively, animate state transitions in engine without tweening everything manually, and reason about the frame without guessing what the engine was doing. It made building interfaces feel less like fighting the engine.</p>
+<p>That was the part worth keeping. I wanted that model for desktop UI work, so I took it and left the rest.</p>
+<p>The moment you do that, you’re no longer building a game engine. Real-time interfaces, especially in constrained environments, have very different requirements. Determinism matters more than flexibility, predictability matters more than generality, and integration with the host system matters more than portability.</p>
+<p>That divergence became Koya.</p>
+<p>Koya didn’t start as a product idea. It started because I wanted UI elements on Hyprland while I was messing around with Arch. I built a lean Vulkan renderer, wired it directly into Wayland, and reused the UI model that had proven useful. What began as a small experiment broke some of the original assumptions.</p>
+<p>At Refilled, it finally had a reason to exist. I saw a practical use case that would make my day job easier. It was a chance to replace Electron, get a clean win for the company, and maybe recover something useful from the five years spent trying to make games.</p>
+<p>We needed to replace Electron in a kiosk environment. A general-purpose game engine was prohibitively expensive; the commercial terms alone would have put it out of reach for a company at that stage. I can’t go into the specifics, but it was enough to make the decision obvious.</p>
+<p>I wasn’t interested in rebuilding another web interface just to carry the same overhead. The goal was simple: a real renderer that let us reduce hardware requirements instead of inflating them.</p>
+<p>This wasn’t a side project for curiosity or startup theatre. Refilled was a customer. I’d already spent five years on this thing trying to make games. I wasn’t doing it for vibes. If it could solve a real problem and someone would pay for it, I was going to sell it.</p>
+<p>Koya was sitting there, half complete and mostly ignored. So I pushed it over the line. A couple of months of nights and weekends turned it into something that could run in a production kiosk. Once it was in the field, it became obvious what the market was paying for that capability, and the trade-off made sense.</p>
+<p>Under those constraints, Koya matured quickly. The renderer became more disciplined. The scripting model had to deal with long-running processes. The execution model had to survive in production where failure modes are not acceptable.</p>
+<p>Which created a problem, but not for the reasons it might seem.</p>
+<p>I still wanted to use Syncromesh for game projects, and it needed a proper UI. Pulling Koya back toward that use case would compromise it, especially given where it was headed. Koya is aimed at embedded Linux environments and OEM licensing, where determinism and stability matter more than flexibility. Dragging it back toward a general-purpose game runtime would break the very thing that made it viable. Pushing Syncromesh further toward Koya would break its purpose.</p>
+<p>The constraints were incompatible. Koya needs to remain lightweight and deterministic. Pulling in simulation and physics would break what makes it useful. Syncromesh needs to remain portable, which means dealing with cross-platform instability. That instability is acceptable in Syncromesh, but not in Koya.</p>
+<p>So the only sensible path was to extract what had actually improved.</p>
+<p>That became Helix.</p>
+<p>Helix is the shared foundation: rendering and scripting pulled out into a core both systems can use. In practice, that means a single renderer, a single scripting runtime, and a consistent execution model that both Syncromesh and Koya plug into. Instead of forcing one system to absorb the other, the common parts were separated and fed back into both.</p>
+<p>Syncromesh wasn’t rebuilt from scratch. The old SFML renderer was removed and replaced with Helix, allowing it to adopt the newer architecture without discarding everything around it. What began as the source became one of the users of its own evolution.</p>
+<p>From there the split is straightforward. Syncromesh remains a system for simulation-heavy, portable workloads where instability is tolerated in exchange for flexibility. Koya remains a deterministic UI runtime aimed at embedded Linux and OEM environments where that trade-off is unacceptable. They share the same core because that part proved to be correct, but they diverge everywhere else because their constraints demand it.</p>
+<p>This isn’t a fork and it isn’t a rewrite. It’s what happens when a system grows in two incompatible directions and you refuse to compromise either one. The useful parts get pulled down a level and reused, and everything else is allowed to specialise.</p>
+<p>The original system produced something more constrained, and that constraint forced better decisions. Those decisions were extracted and fed back into the original system. What came out the other side isn’t a clean split so much as a loop; more a helix than a fork.</p>
+
+        </div>
+        <nav class="post-nav">
+          <a href="/">← Back to home</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>
+
