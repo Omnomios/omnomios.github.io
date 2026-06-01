@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Rules Create Complex Systems – Engineering, Leadership, Reality</title>
+    <meta name="description" content="If starlings don’t use telepathy to move as one, why do so many leaders still think complex systems need a central brain?">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <script data-goatcounter="https://bsk.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/tags/">Tags</a>
+    </nav>
+    <main>
+      <article>
+        <div class="post-header">
+          <h1>Local Rules Create Complex Systems</h1>
+          <div class="post-meta-row">
+            <p class="post-meta">May 24, 2026</p>
+            <p class="post-tags"><a href="/tags/leadership/" class="tag">leadership</a> <a href="/tags/systems/" class="tag">systems</a> <a href="/tags/organisation/" class="tag">organisation</a></p>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>I was watching a short by Hannah Fry about starling murmurations. Hundreds of thousands of birds moving through the sky in what looks like a single coordinated organism, turning and folding around itself without smashing into the ground or each other. For a long time people tried to explain that kind of behaviour as if there had to be some central intelligence behind it. A leader. A plan. A hidden signal. Apparently one very serious biologist decided the answer was telepathy, because humans do enjoy reaching for nonsense when local rules would make them feel less special.</p>
+<p>The actual answer is much more interesting. Craig Reynolds showed that you do not need to model the whole flock. Each bird only needs to respond to the birds near it. Avoid getting too close. Steer roughly the same way. Stay near the group. A few local rules, applied consistently, produce something that looks coordinated at a scale no individual bird can understand.</p>
+<p>The line that stuck with me was this: you do not get a beautiful cohesive whole by having a beautiful cohesive plan. You get it by having every individual quietly paying attention to the people right next to them.</p>
+<p>That is very close to how I think about systems.</p>
+<p>Large systems become impossible to reason about when you try to control them from the top down. There are too many moving parts, too many interactions, and too much state for one person to hold in their head. The mistake is thinking the solution is a more complete plan. Usually the plan is not the hard part. The hard part is designing the boundaries, the interfaces, and the local rules so the system can behave coherently without every detail being centrally managed.</p>
+<p>That was the breakthrough behind Deepfield and Syncromesh.</p>
+<p>Deepfield needed to simulate a world far larger than any single thread or server should have been expected to own. The obvious approach would have been to divide the world by coordinates and assign fixed regions to workers. It is simple, but it fails as soon as the load stops being uniform. A quiet empty region does not need the same compute as a dense cluster of entities smashing into each other, and a system that pretends otherwise wastes resources where nothing is happening while struggling where the action actually is.</p>
+<p>The better model was to focus on the smallest coordinate space a single worker could manage, then get the boundaries right. Each worker owned its local domain. The interesting work happened at the edges: entity handoff, state synchronisation, authority transfer, and making sure adjacent sectors agreed about the world they shared.</p>
+<p>Once that was working, the larger system became less mysterious. I did not need one thread to understand the whole universe. I needed each unit to manage its local reality correctly and communicate cleanly with the units around it. From that, a much larger simulation emerged.</p>
+<p>The useful part was that the same mechanism used to keep sectors in sync also helped with client networking. Clients did not need to know the entire state of the world. They needed the state relevant to their local area, with sensible updates at the boundaries. The optimisation was not a separate feature bolted on later. It fell out of the same domain and interface model.</p>
+<p>This is the part that keeps repeating in different forms.</p>
+<p>When a system is too large to manage directly, the answer is usually not to invent a bigger brain. The answer is to make the local responsibilities smaller, clearer, and better connected.</p>
+<p>That is also how I think about teams.</p>
+<p>The collective does not exist independently of its components. A forest is not something separate from the trees. A company is not something separate from the people inside it. A stable, well-functioning organisation does not appear above unstable, exhausted, confused individuals by force of strategy deck. The properties of the whole emerge from the condition and behaviour of the parts.</p>
+<p>A person should have the smallest domain they can meaningfully own. Not a vague responsibility cloud, not a shared mess where everyone is technically accountable and nobody has authority, but a real domain with clear edges. This is yours. You own it. You make decisions inside it. You are accountable for what happens there.</p>
+<p>My job as a leader is then less about controlling every decision and more about managing the space between domains. Communication between people. Boundaries between teams. Shared components. Interfaces. Expectations. The places where one person’s work becomes another person’s input.</p>
+<p>That is where most organisational failure lives.</p>
+<p>People like to talk about alignment as if it comes from everyone understanding the same strategy document. It does not. Alignment comes from clean interfaces. It comes from people knowing what they own, what others own, and how work moves between them. If those boundaries are muddy, the system produces friction no matter how inspiring the plan looks.</p>
+<p>The pattern scales upward. A team lead owns the collective domain that contains the domains of their people. An engineering manager owns the domain that contains several teams. A CTO owns the technical organisation. Eventually the CEO owns the whole company. At each level, delegation should remain atomic and well defined. Authority and responsibility need to stay together. Once they separate, the system becomes political. People stop focusing on doing good work and start focusing on staying close to whoever can override the decision.</p>
+<p>This does not mean people work in isolation. The opposite. Clear ownership makes cooperation easier because the interaction surface is legible. People know where to go, who can decide, and where responsibility changes hands. The boundaries become places of coordination instead of conflict.</p>
+<p>Top-down design fails when it tries to specify every internal movement of the system. It becomes too expensive to reason about and too brittle to survive reality. Local rules work because they reduce the mental load. Each unit only has to understand its own domain and its neighbours. The whole system does not need to be centrally choreographed to move coherently.</p>
+<p>That is the lesson I keep coming back to.</p>
+<p>Whether it is a distributed simulation, a renderer, a team, or a company, the shape of the whole depends on the quality of the local rules, the health of the components, and the boundaries between parts. You do not get scale by making one person understand everything. You get scale by making each part understandable, then making the interactions between parts reliable.</p>
+<p>A flock does not need telepathy.</p>
+<p>A company does not need omniscient leadership.</p>
+<p>It needs clear ownership, clean interfaces, and people paying attention to the domains next to them.</p>
+
+        </div>
+        <nav class="post-nav">
+          <a href="/">← Back to home</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>
+
